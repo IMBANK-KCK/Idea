@@ -1,0 +1,56 @@
+1. 데모 코드 구성 (Python)
+이 코드는 기업의 탄소 배출량, 사회 공헌도, 지배구조 데이터를 입력받아 대출 금리를 결정하고, 왜 그런 결과가 나왔는지(XAI) 보여주는 간단한 논리입니다.
+#################################################
+  import pandas as pd
+
+def calculate_loan_interest(esg_data):
+    # 1. 가중치 설정 (ESG가 신용에 미치는 영향)
+    weights = {'environmental': 0.4, 'social': 0.3, 'governance': 0.3}
+    
+    # 2. 점수 계산
+    score = (esg_data['environmental'] * weights['environmental'] +
+             esg_data['social'] * weights['social'] +
+             esg_data['governance'] * weights['governance'])
+    
+    # 3. 금리 결정 (기준 금리 5.0% - 점수에 따른 감면)
+    interest_rate = max(2.5, 5.0 - (score / 20))
+    
+    # 4. XAI 설명 생성 (규제 준수: 설명 가능한 근거)
+    explanation = f"AI 분석 결과: 귀사의 ESG 점수는 {score:.1f}점입니다. "
+    if esg_data['environmental'] < 50:
+        explanation += "특히 탄소 배출 관리 지표가 낮아 금리 혜택이 제한되었습니다."
+    else:
+        explanation += "환경 및 사회적 경영 지표가 우수하여 최저 금리가 적용되었습니다."
+        
+    return round(interest_rate, 2), explanation
+
+# 가상 기업 데이터 입력
+company_data = {'environmental': 85, 'social': 70, 'governance': 90}
+rate, reason = calculate_loan_interest(company_data)
+
+print(f"결정된 대출 금리: {rate}%")
+print(f"AI의 설명: {reason}")
+
+############################################
+
+  2. 기획서에 넣을 '데모 설명' (PPT용 텍스트)
+코드와 함께 PPT에 넣으면 좋은 설명 문구입니다.
+
+[데모 시연: 투명한 금리 산정 시스템]
+
+기능 요약: 입력된 기업의 ESG 데이터를 AI가 분석하여 금리를 산출하고, 그 결정 과정을 자연어(Natural Language)로 사용자에게 즉각 제공합니다.
+
+XAI(설명 가능한 AI)의 적용: 단순히 '금리 2.5%'라고 결과만 보여주는 것이 아니라, "왜 이 금리가 산정되었는지" 그 이유를 금융감독원 가이드라인에 맞춰 투명하게 공개합니다.
+
+보안 및 규제: 모든 데이터 처리 과정은 iM뱅크의 내부 보안망 내에서 이루어지며, AI 모델은 입력된 데이터의 편향성을 주기적으로 체크하여 공정성을 유지합니다.
+##############################################
+3. 더 멋진 데모를 만드는 법 (추가 팁)
+코드만 보여주면 심사위원들이 이해하기 어렵습니다. 아래 조합을 추천합니다.
+
+코드 결과물 캡처: 위 파이썬 코드를 실행한 화면(결과창)을 캡처해서 PPT에 넣으세요.
+
+단디 캐릭터 삽입: 캡처한 결과창 옆에 정장 입은 '단디' 이미지를 넣고 말풍선으로 "AI가 이렇게 꼼꼼하게 분석해서 금리를 단디(단단히) 정했어!"라는 문구를 넣으세요.
+
+흐름도(Flowchart): 코드의 논리를 그림으로 그려보세요.
+
+[기업 데이터] -> [iM AI 모델] -> [금리 산정 & XAI 근거] -> [결과 출력]
