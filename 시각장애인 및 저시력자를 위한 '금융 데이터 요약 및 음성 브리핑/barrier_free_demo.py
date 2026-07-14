@@ -1,4 +1,4 @@
-# pip install gTTS
+
 """
 이 데모는 단순한 음성 재생뿐만 아니라, 
 저시력자분들이 화면을 더 편하게 볼 수 있도록 돕는 
@@ -11,15 +11,16 @@ import os
 import sys
 import tkinter as tk
 from tkinter import messagebox
-
-# gTTS 라이브러리 가져오기 및 예외 처리
-try:
-    from gtts import gTTS
-except ImportError:
-    # 비전공자 팀원분들을 위해 라이브러리가 없을 때 친절히 안내하고 종료합니다.
-    print("\n[알림] 데모 실행을 위해 gTTS 라이브러리가 필요합니다.")
-    print("터미널 창에 'pip install gTTS'를 입력하여 설치한 후 다시 실행해 주세요!\n")
-    sys.exit(1)
+from gtts import gTTS
+#
+# # gTTS 라이브러리 가져오기 및 예외 처리
+# try:
+#     from gtts import gTTS
+# except ImportError:
+#     # 비전공자 팀원분들을 위해 라이브러리가 없을 때 친절히 안내하고 종료합니다.
+#     print("\n[알림] 데모 실행을 위해 gTTS 라이브러리가 필요합니다.")
+#     print("터미널 창에 'pip install gTTS'를 입력하여 설치한 후 다시 실행해 주세요!\n")
+#     sys.exit(1)
 
 # =====================================================================
 # 1. 가상 데이터베이스 (SQL 테이블 데이터 시뮬레이션)
